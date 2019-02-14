@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getBookListJson } from "../actions";
 
 class BookList extends Component {
   constructor(props) {
@@ -10,18 +11,21 @@ class BookList extends Component {
 
   componentDidMount() {
     // TODO: fetching book list data from server
+    this.props.getBookListJson();
   }
 
   render() {
-    return <div>Book List</div>;
+    return <div>{this.props.bookList}</div>;
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    bookList: state.bookList.bookList
+  };
 }
 
 export default connect(
   mapStateToProps,
-  {}
+  { getBookListJson }
 )(BookList);
