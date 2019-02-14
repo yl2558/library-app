@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Route, Switch } from "react-router";
-import { BookList } from "./book-list";
-import { Book } from "./book";
+import { BookList, Book } from "./book-list";
 import { ROOT_URL } from "./common";
 import history from "./history";
 
