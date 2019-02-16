@@ -12,7 +12,7 @@
       "year": 1958,
       "avalability": true,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at.",
-      "availability": false
+      "availability": true
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "pages": 784,
       "title": "Fairy tales",
       "year": 1836,
-      "avalability": false,
+      "availability": false,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
     },
     {
@@ -37,7 +37,7 @@
       "pages": 928,
       "title": "The Divine Comedy",
       "year": 1315,
-      "avalability": true,
+      "availability": true,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
     },
     {
@@ -50,7 +50,7 @@
       "pages": 160,
       "title": "The Epic Of Gilgamesh",
       "year": -1700,
-      "avalability": false,
+      "availability": false,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
     },
     {
@@ -58,7 +58,7 @@
       "imageLink": "images/fairy-tales.jpg",
       "title": "update 1 test 3",
       "description": "222",
-      "avalability": false,
+      "availability": false,
       "id": 6
     },
     {
@@ -66,7 +66,7 @@
       "imageLink": "images/fairy-tales.jpg",
       "title": "test2",
       "description": "edad",
-      "avalability": true,
+      "availability": true,
       "id": 7
     }
   ]

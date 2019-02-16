@@ -1,0 +1,44 @@
+$directions: "t", "b", "l", "r";
+
+@for $i from 1 through 4 {
+  @for $j from 1 through 35 {
+    @if nth($directions, $i) == "t" {
+      .m#{nth($directions, $i)}-#{$j} {
+        margin-top: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "b" {
+      .m#{nth($directions, $i)}-#{$j} {
+        margin-bottom: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "l" {
+      .m#{nth($directions, $i)}-#{$j} {
+        margin-left: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "r" {
+      .m#{nth($directions, $i)}-#{$j} {
+        margin-right: #{$j}px !important;
+      }
+    }
+  }
+}
+
+/* font weight */
+.bold {
+  font-weight: bold;
+}
+.bolder {
+  font-weight: bolder;
+}
+
+.lighter {
+  font-weight: lighter;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
