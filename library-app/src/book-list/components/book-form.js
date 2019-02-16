@@ -4,7 +4,7 @@ import Form from "antd/lib/form";
 import Button from "antd/lib/button";
 import Input from "antd/lib/input";
 
-class NewBookForm extends Component {
+class BookForm extends Component {
   constructor(props) {
     super(props);
 
@@ -34,7 +34,7 @@ class NewBookForm extends Component {
         sm: { span: 16 }
       }
     };
-    const { bookInfo } = this.props;
+    const { bookInfo, label } = this.props;
     return (
       <Form onSubmit={this.handleOnSubmit}>
         <FormItem {...formItemLayout} label="Title">
@@ -72,7 +72,7 @@ class NewBookForm extends Component {
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" style={{ float: "right" }}>
-            Add
+            {label}
           </Button>
         </FormItem>
       </Form>
@@ -80,6 +80,6 @@ class NewBookForm extends Component {
   }
 }
 
-NewBookForm = Form.create()(NewBookForm);
-export { NewBookForm };
-export default NewBookForm;
+BookForm = Form.create()(BookForm);
+export { BookForm };
+export default BookForm;

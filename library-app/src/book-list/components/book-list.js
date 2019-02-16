@@ -14,7 +14,7 @@ import {
   updateBook,
   updateBookAvailability
 } from "../actions";
-import { NewBookForm } from "./new-book-form";
+import { BookForm } from "./book-form";
 import "./book-list.scss";
 
 class BookList extends Component {
@@ -225,9 +225,10 @@ class BookList extends Component {
             onCancel={this.handleCancel}
             footer={null}
           >
-            <NewBookForm
+            <BookForm
               onSubmit={value => this.handleAddNewBook(value)}
               bookInfo={this.state.book}
+              label="Add"
             />
           </Modal>
           <Modal
@@ -237,9 +238,10 @@ class BookList extends Component {
             onCancel={this.handleUpdateCancel}
             footer={null}
           >
-            <NewBookForm
+            <BookForm
               onSubmit={value => this.handleUpdateBook(value)}
               bookInfo={this.state.book}
+              label="Update"
             />
           </Modal>
         </div>
