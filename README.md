@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 please download and install:
-`[Node.js](https://nodejs.org/en/download/)`,
+[Node.js](https://nodejs.org/en/download/),
 `npm` will be downloaded and installed along with `Node.js`
 
 Since we are going to use `Yarn` instead of `npm`, let's install `Yarn` at first:
@@ -15,6 +15,14 @@ Since we are going to use `Yarn` instead of `npm`, let's install `Yarn` at first
 ```sh
 npm install -g yarn
 ```
+
+### Start JSON server:
+Using [json-server](https://github.com/typicode/json-server) as the backend for this application. Within current directory, you will see a file called `db.json`. Start the server on port 3004.
+
+```sh
+json-server --watch db.json --port 3004
+```
+
 
 ### Package Installing
 
