@@ -37,3 +37,21 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #a6cae5;
 }
+
+.no-data-wrapper {
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  background: #fefefe;
+  margin: 0 10px;
+}
+
+.no-data {
+  margin: auto;
+  color: #999;
+  padding: 14px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-shadow: inset 0px 0px 12px 1px;
+}

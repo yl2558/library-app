@@ -6,6 +6,7 @@ import Card from "antd/lib/card";
 import Modal from "antd/lib/modal";
 import Popconfirm from "antd/lib/popconfirm";
 import Select from "antd/lib/select";
+import { NoData } from "../../common";
 import {
   getBookList,
   getBook,
@@ -178,9 +179,16 @@ class BookList extends Component {
   render() {
     const Option = Select.Option;
     const { bookList } = this.props;
+    const { filter } = this.state;
     if (_.isEmpty(bookList)) {
       return <div>Loading...</div>;
     }
+    const filteredBookList =
+      filter === "all"
+        ? bookList
+        : filter === "loaned"
+        ? _.filter(bookList, ["availability", false])
+        : _.filter(bookList, ["availability", true]);
     return (
       <div>
         <div style={{ padding: "0 10px" }}>
@@ -223,20 +231,15 @@ class BookList extends Component {
             />
           </Modal>
         </div>
-        <div className="book-list">
-          {this.state.filter === "all" &&
-            this.props.bookList.map((e, idx) =>
+        {_.isEmpty(filteredBookList) ? (
+          <NoData />
+        ) : (
+          <div className="book-list">
+            {filteredBookList.map((e, idx) =>
               this.createBookCardComponent(e, idx)
             )}
-          {this.state.filter === "loaned" &&
-            _.filter(this.props.bookList, ["availability", false]).map(
-              (e, idx) => this.createBookCardComponent(e, idx)
-            )}
-          {this.state.filter === "available" &&
-            _.filter(this.props.bookList, ["availability", true]).map(
-              (e, idx) => this.createBookCardComponent(e, idx)
-            )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
