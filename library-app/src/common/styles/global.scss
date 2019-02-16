@@ -1,0 +1,39 @@
+@import "~antd/dist/antd.css";
+@import "./format.scss";
+@import "./variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica Neue‘, Arial, Verdana, sans-serif !important;
+  font-size: 14px;
+  color: $default-color;
+  background: $default-bg-color;
+}
+
+/* scroller*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb {
+  overflow: visible;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a6cae5;
+}
