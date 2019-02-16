@@ -8,7 +8,7 @@ import {
   UPDATE_BOOK_AVAILABILITY
 } from "./constants/ActionTypes";
 
-export function getBookListJson() {
+export function getBookList() {
   return function action(dispatch) {
     const request = axios.get("/books");
 
@@ -61,10 +61,10 @@ export function deleteBook(id) {
 export function updateBook(book) {
   return function action(dispatch) {
     const request = axios.put(`/books/${book.id}`, book);
-    return request.then(res =>
+    return request.then(response =>
       dispatch({
         type: UPDATE_BOOK,
-        payload: { ...book, ...res }
+        payload: { ...book, ...response }
       })
     );
   };

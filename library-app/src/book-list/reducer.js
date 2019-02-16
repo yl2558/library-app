@@ -22,13 +22,13 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_BOOK:
       return { ...state, bookList: [...state.bookList, action.payload] };
     case DELETE_BOOK:
-      const id = action.payload;
-      const idx = _.findIndex(state.bookList, ["id", id]);
+      const deleteId = action.payload;
+      const deleteIdx = _.findIndex(state.bookList, ["id", deleteId]);
       return {
         ...state,
         bookList: [
-          ...state.bookList.slice(0, idx),
-          ...state.bookList.slice(idx + 1)
+          ...state.bookList.slice(0, deleteIdx),
+          ...state.bookList.slice(deleteIdx + 1)
         ]
       };
     case UPDATE_BOOK:
@@ -43,14 +43,14 @@ export default (state = INITIAL_STATE, action) => {
         ]
       };
     case UPDATE_BOOK_AVAILABILITY:
-      const { id: bookId, book } = action.payload;
-      const index = _.findIndex(state.bookList, ["id", bookId]);
+      const { id, book } = action.payload;
+      const idx = _.findIndex(state.bookList, ["id", id]);
       return {
         ...state,
         bookList: [
-          ...state.bookList.slice(0, index),
+          ...state.bookList.slice(0, idx),
           book,
-          ...state.bookList.slice(index + 1)
+          ...state.bookList.slice(idx + 1)
         ]
       };
     default:

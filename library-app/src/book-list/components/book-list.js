@@ -7,7 +7,7 @@ import Modal from "antd/lib/modal";
 import Popconfirm from "antd/lib/popconfirm";
 import Select from "antd/lib/select";
 import {
-  getBookListJson,
+  getBookList,
   getBook,
   addBook,
   deleteBook,
@@ -36,7 +36,7 @@ class BookList extends Component {
 
   componentDidMount() {
     // TODO: fetching book list data from server
-    this.props.getBookListJson();
+    this.props.getBookList();
   }
 
   handleOnClick(id) {
@@ -271,7 +271,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    getBookListJson,
+    getBookList,
     getBook,
     addBook,
     deleteBook,
