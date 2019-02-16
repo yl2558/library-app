@@ -1,9 +1,18 @@
 import React from "react";
 import axios from "axios";
 import { Route, Switch } from "react-router";
+import Layout from "antd/lib/layout";
+import Input from "antd/lib/input";
+import Icon from "antd/lib/icon";
+import Menu from "antd/lib/menu";
+import Popconfirm from "antd/lib/popconfirm";
 import { BookList, Book } from "./book-list";
 import { ROOT_URL } from "./common";
 import history from "./history";
+import "./common/styles/global.scss";
+
+const { Header, Content } = Layout;
+const { SubMenu } = Menu;
 
 axios.defaults.baseURL = ROOT_URL;
 
@@ -54,10 +63,58 @@ axios.interceptors.response.use(
 );
 
 const App = () => (
-  <Switch>
-    <Route path="/book" component={Book} />
-    <Route path="/" component={BookList} />
-  </Switch>
+  <Layout>
+    <Header style={{ background: "#fefefe", display: "flex" }}>
+      <div style={{ width: "30%" }}>
+        <Input
+          placeholder="Search Book"
+          prefix={<Icon type="search" style={{ color: "rgba(0,0,0,.25)" }} />}
+        />
+      </div>
+      <div
+        style={{
+          width: "40%",
+          display: "flex",
+          itemAlign: "center",
+          justifyContent: "center"
+        }}
+      >
+        <span>Personal Library</span>
+      </div>
+      <div style={{ width: "30%" }}>
+        <Menu
+          theme="light"
+          mode="horizontal"
+          style={{ lineHeight: "64px", float: "right" }}
+        >
+          <SubMenu
+            key="username"
+            title={
+              <span>
+                <Icon type="user" />
+                Lydia@gmail.com
+              </span>
+            }
+          >
+            <Menu.Item key="logout">
+              <div>
+                <Icon type="logout" />
+                Sign Out
+              </div>
+            </Menu.Item>
+          </SubMenu>
+        </Menu>
+      </div>
+    </Header>
+    <Content style={{ padding: 24 }}>
+      {
+        <Switch>
+          <Route path="/book" component={Book} />
+          <Route path="/" component={BookList} />
+        </Switch>
+      }
+    </Content>
+  </Layout>
 );
 
 export default App;
