@@ -6,7 +6,7 @@ import Card from "antd/lib/card";
 import Modal from "antd/lib/modal";
 import Popconfirm from "antd/lib/popconfirm";
 import Select from "antd/lib/select";
-import { NoData } from "../../common";
+import { NoData, ErrorBoundary } from "../../common";
 import {
   getBookList,
   getBook,
@@ -190,7 +190,7 @@ class BookList extends Component {
         ? _.filter(bookList, ["availability", false])
         : _.filter(bookList, ["availability", true]);
     return (
-      <div>
+      <ErrorBoundary>
         <div style={{ padding: "0 10px" }}>
           <Button className="mb-10 mr-10" onClick={this.showModal}>
             Add new book
@@ -240,7 +240,7 @@ class BookList extends Component {
             )}
           </div>
         )}
-      </div>
+      </ErrorBoundary>
     );
   }
 }

@@ -3,6 +3,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import Card from "antd/lib/card";
 import Button from "antd/lib/button";
+import { ErrorBoundary } from "../../common";
 import "./book-list.scss";
 
 class Book extends Component {
@@ -22,7 +23,7 @@ class Book extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div>
+      <ErrorBoundary>
         <div style={{ display: "flex" }} className="center mb-10">
           <div style={{ width: "50%" }}>
             <Button onClick={this.handleOnClick}>Back</Button>
@@ -47,7 +48,7 @@ class Book extends Component {
             </div>
           </Card>
         </div>
-      </div>
+      </ErrorBoundary>
     );
   }
 }

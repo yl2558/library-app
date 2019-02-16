@@ -5,8 +5,9 @@ import Layout from "antd/lib/layout";
 import Input from "antd/lib/input";
 import Icon from "antd/lib/icon";
 import Menu from "antd/lib/menu";
+import message from "antd/lib/message";
 import { BookList, Book } from "./book-list";
-import { ROOT_URL } from "./common";
+import { ROOT_URL, ErrorBoundary } from "./common";
 import history from "./history";
 import "./common/styles/global.scss";
 
@@ -20,7 +21,7 @@ const error = err => {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
     if (err.response.status === 416) {
-      console.log(
+      message.error(
         "No Data on selected page with current filter selection, please click submit first"
       );
     }
@@ -33,18 +34,20 @@ const error = err => {
             history.push("/");
           }
         : undefined;
-    console.log(
+    message.error(
       (err.response.data && err.response.data.message) ||
-        "Something went wrong with the server, if it is frozen, please refresh"
+        "Something went wrong with the server, if it is frozen, please refresh",
+      1.5,
+      onClose
     );
   } else if (err.request) {
     // The request was made but no response was received
     // `err.request` is an instance of XMLHttpRequest in the browser and an instance of
     // http.ClientRequest in node.js
-    console.log("No response from the server was received");
+    message.error("No response from the server was received");
   } else {
     // Something happened in setting up the request that triggered an Error
-    console.log(
+    message.error(
       err.message || "Something went wrong, if it is frozen, please refresh"
     );
   }
@@ -98,14 +101,16 @@ const App = () => (
         </Menu>
       </div>
     </Header>
-    <Content style={{ padding: 24 }}>
-      {
-        <Switch>
-          <Route path="/book" component={Book} />
-          <Route path="/" component={BookList} />
-        </Switch>
-      }
-    </Content>
+    <ErrorBoundary>
+      <Content style={{ padding: 24 }}>
+        {
+          <Switch>
+            <Route path="/book" component={Book} />
+            <Route path="/" component={BookList} />
+          </Switch>
+        }
+      </Content>
+    </ErrorBoundary>
   </Layout>
 );
 
