@@ -31,9 +31,6 @@ class BookList extends Component {
     this.handleAddNewBook = this.handleAddNewBook.bind(this);
     this.handleDeleteBook = this.handleDeleteBook.bind(this);
     this.handleUpdateBook = this.handleUpdateBook.bind(this);
-    this.handleUpdateBookAvailability = this.handleUpdateBookAvailability.bind(
-      this
-    );
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
@@ -79,10 +76,6 @@ class BookList extends Component {
 
   handleDeleteBook(id) {
     this.props.deleteBook(id);
-  }
-
-  handleUpdateBookAvailability(id, availability) {
-    this.props.updateBookAvailability(id, availability);
   }
 
   handleOnChange(e) {
@@ -143,6 +136,10 @@ class BookList extends Component {
     this.props.deleteBook(id);
   };
 
+  updateAvailabilityConfirm = (id, availability) => {
+    this.props.updateBookAvailability(id, availability);
+  };
+
   createBookCardComponent = (e, idx) => (
     <div style={{ width: "100%", padding: "0 10px" }}>
       <Card key={idx} className="card">
@@ -174,15 +171,24 @@ class BookList extends Component {
           >
             Update
           </Button>
-          <Button
-            style={{ marginRight: "3%" }}
-            onClick={() =>
-              this.handleUpdateBookAvailability(e.id, e.availability)
+          <Popconfirm
+            title={`Are you sure you want to ${
+              e.availability ? "borrow" : "return"
+            } this book?`}
+            onConfirm={() =>
+              this.updateAvailabilityConfirm(e.id, e.availability)
             }
-            type={e.availability ? "primary" : "default"}
+            onCancel={this.cancel}
+            okText="Yes"
+            cancelText="No"
           >
-            {e.availability ? "Loan" : "Return"}
-          </Button>
+            <Button
+              style={{ marginRight: "3%" }}
+              type={e.availability ? "primary" : "default"}
+            >
+              {e.availability ? "Borrow" : "Return"}
+            </Button>
+          </Popconfirm>
         </div>
       </Card>
     </div>
