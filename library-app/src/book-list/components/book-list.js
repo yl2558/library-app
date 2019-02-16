@@ -128,8 +128,8 @@ class BookList extends Component {
   };
 
   createBookCardComponent = (e, idx) => (
-    <div className="card-wrapper">
-      <Card key={idx}>
+    <div key={idx} className="card-wrapper">
+      <Card>
         <div className="card-content">
           <div className="left" onClick={() => this.handleOnClick(e.id)}>
             <img src={e.imageLink} alt={e.id} height="100%" width="100%" />
