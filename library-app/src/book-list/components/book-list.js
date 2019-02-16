@@ -22,29 +22,25 @@ class BookList extends Component {
     super(props);
 
     this.state = {
-      visible: false,
-      updateVisible: false,
-      show: "all",
+      newBookVisible: false,
+      updateBookVisible: false,
+      filter: "all",
       book: {}
     };
-    this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleAddNewBook = this.handleAddNewBook.bind(this);
-    this.handleDeleteBook = this.handleDeleteBook.bind(this);
-    this.handleUpdateBook = this.handleUpdateBook.bind(this);
-    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   componentDidMount() {
-    // TODO: fetching book list data from server
     this.props.getBookList();
   }
 
-  handleOnClick(id) {
+  // List single book
+  handleOnClick = id => {
     this.props.getBook(id);
     this.props.history.push("/book");
-  }
+  };
 
-  handleAddNewBook(value) {
+  // Add New Book
+  handleAddBook = value => {
     console.log("add a new book", value);
     const book = {
       author: value.author,
@@ -55,11 +51,30 @@ class BookList extends Component {
     };
     this.props.addBook(book);
     this.setState({
-      visible: false
+      newBookVisible: false
     });
-  }
+  };
 
-  handleUpdateBook(value) {
+  showModal = () => {
+    this.setState({
+      newBookVisible: true
+    });
+  };
+
+  handleOk = () => {
+    this.setState({
+      newBookVisible: false
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      newBookVisible: false
+    });
+  };
+
+  // Update Book Info
+  handleUpdateBook = value => {
     console.log("update book", value);
     const book = {
       ...this.state.book,
@@ -69,106 +84,73 @@ class BookList extends Component {
     };
     this.props.updateBook(book);
     this.setState({
-      updateVisible: false,
+      updateBookVisible: false,
       book: {}
-    });
-  }
-
-  handleDeleteBook(id) {
-    this.props.deleteBook(id);
-  }
-
-  handleOnChange(e) {
-    console.log(e);
-    this.setState({
-      show: e
-    });
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
-
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  };
-
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      visible: false
     });
   };
 
   showUpdateModal = e => {
     this.setState({
-      updateVisible: true,
+      updateBookVisible: true,
       book: e
     });
   };
 
-  handleUpdateOk = e => {
-    console.log(e);
+  handleUpdateOk = () => {
     this.setState({
-      updateVisible: false,
+      updateBookVisible: false,
       book: {}
     });
   };
 
-  handleUpdateCancel = e => {
-    console.log(e);
+  handleUpdateCancel = () => {
     this.setState({
-      updateVisible: false,
+      updateBookVisible: false,
       book: {}
     });
   };
 
-  cancel = e => {
-    console.log(e);
-  };
-
-  confirm = id => {
+  // Delete Book
+  confirmDeleteBook = id => {
     this.props.deleteBook(id);
   };
 
-  updateAvailabilityConfirm = (id, availability) => {
+  // Borrow/Return Book
+  confirmUpdateAvailability = (id, availability) => {
     this.props.updateBookAvailability(id, availability);
   };
 
+  handleFilterOnChange = filter => {
+    this.setState({
+      filter
+    });
+  };
+
   createBookCardComponent = (e, idx) => (
-    <div style={{ width: "100%", padding: "0 10px" }}>
-      <Card key={idx} className="card">
-        <div style={{ display: "flex", marginBottom: 10 }}>
+    <div className="card-wrapper">
+      <Card key={idx}>
+        <div className="card-content">
           <div className="left" onClick={() => this.handleOnClick(e.id)}>
             <img src={e.imageLink} alt={e.id} height="100%" width="100%" />
           </div>
           <div className="right">
             <h3>{e.title}</h3>
-            <div style={{ marginBottom: 10, marginTop: -5 }}>by {e.author}</div>
+            <div className="mb-10">by {e.author}</div>
             <div>{e.description}</div>
           </div>
         </div>
         <div>
           <Popconfirm
             title="Are you sure you want to delete this book?"
-            onConfirm={() => this.confirm(e.id)}
-            onCancel={this.cancel}
+            onConfirm={() => this.confirmDeleteBook(e.id)}
             okText="Yes"
             cancelText="No"
           >
-            <Button style={{ marginRight: "3%" }} type="danger">
+            <Button className="mr-10" type="danger">
               Delete
             </Button>
           </Popconfirm>
-          <Button
-            style={{ marginRight: "3%" }}
-            onClick={() => this.showUpdateModal(e)}
-          >
+          <Button className="mr-10" onClick={() => this.showUpdateModal(e)}>
             Update
           </Button>
           <Popconfirm
@@ -176,14 +158,13 @@ class BookList extends Component {
               e.availability ? "borrow" : "return"
             } this book?`}
             onConfirm={() =>
-              this.updateAvailabilityConfirm(e.id, e.availability)
+              this.confirmUpdateAvailability(e.id, e.availability)
             }
-            onCancel={this.cancel}
             okText="Yes"
             cancelText="No"
           >
             <Button
-              style={{ marginRight: "3%" }}
+              className="mr-10"
               type={e.availability ? "primary" : "default"}
             >
               {e.availability ? "Borrow" : "Return"}
@@ -203,16 +184,13 @@ class BookList extends Component {
     return (
       <div>
         <div style={{ padding: "0 10px" }}>
-          <Button
-            style={{ marginBottom: 10, marginRight: 10 }}
-            onClick={this.showModal}
-          >
+          <Button className="mb-10 mr-10" onClick={this.showModal}>
             Add new book
           </Button>
           <Select
-            defaultValue={this.state.show}
+            defaultValue={this.state.filter}
             style={{ width: "20%" }}
-            onChange={e => this.handleOnChange(e)}
+            onChange={e => this.handleFilterOnChange(e)}
           >
             <Option value="all">Show All Books</Option>
             <Option value="loaned">Show Loaned Books</Option>
@@ -220,20 +198,20 @@ class BookList extends Component {
           </Select>
           <Modal
             title="Add New Book"
-            visible={this.state.visible}
+            visible={this.state.newBookVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
             footer={null}
           >
             <BookForm
-              onSubmit={value => this.handleAddNewBook(value)}
+              onSubmit={value => this.handleAddBook(value)}
               bookInfo={this.state.book}
               label="Add"
             />
           </Modal>
           <Modal
             title="Update Book Info"
-            visible={this.state.updateVisible}
+            visible={this.state.updateBookVisible}
             onOk={this.handleUpdateOk}
             onCancel={this.handleUpdateCancel}
             footer={null}
@@ -246,15 +224,15 @@ class BookList extends Component {
           </Modal>
         </div>
         <div className="book-list">
-          {this.state.show === "all" &&
+          {this.state.filter === "all" &&
             this.props.bookList.map((e, idx) =>
               this.createBookCardComponent(e, idx)
             )}
-          {this.state.show === "loaned" &&
+          {this.state.filter === "loaned" &&
             _.filter(this.props.bookList, ["availability", false]).map(
               (e, idx) => this.createBookCardComponent(e, idx)
             )}
-          {this.state.show === "available" &&
+          {this.state.filter === "available" &&
             _.filter(this.props.bookList, ["availability", true]).map(
               (e, idx) => this.createBookCardComponent(e, idx)
             )}
