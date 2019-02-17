@@ -7,13 +7,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 please download and install:
-[Node.js](https://nodejs.org/en/download/),
-`npm` will be downloaded and installed along with `Node.js`
+[Node.js](https://nodejs.org/en/download/)
+(`npm` will be downloaded and installed along with `Node.js`), [JSON Server](https://github.com/typicode/json-server)
 
 Since we are going to use `Yarn` instead of `npm`, let's install `Yarn` at first:
 
 ```sh
 npm install -g yarn
+npm install -g json-server
 ```
 
 ### Start JSON server:
@@ -37,19 +38,11 @@ yarn install
 yarn start
 ```
 
-### Building Project
-
-It will compress `javascript` and 'css' files and then all assets will be placed in the _**build**_ directory
-
-```
-yarn build
-```
-
 ### Technology Choices
 
 * #### Base Library
   * [React](https://facebook.github.io/react/) - A Javascript library for building user interface
-  * [Redux](redux.js.org/) - A predictable state container for JavaScript apps
+  * [Redux](https://github.com/reduxjs/redux) - A predictable state container for JavaScript apps
      * [Redux-Thunk](https://github.com/reduxjs/redux-thunk) - Redux middleware allows you to write action creators that return a function instead of an action.
      * [Redux DevTools](https://github.com/gaearon/redux-devtools) - DevTools for Redux with hot reloading, action replay, and customizable UI
   * [React Router](https://github.com/ReactTraining/react-router) - Declarative routing for React
@@ -110,7 +103,7 @@ src/
 ```
 
 * #### Create Strict Module Boundaries
-Divide the application by modules, and for each module, make sure to export resources via `index.js` if needed in which we create a window to expose the module to the outside world.
+Divide the application by modules, and for each module, make sure to export resources via `index.js` if needed by which we create a window to expose the module to the outside world.
 It increases the maintainability of our application especially when there are dependencies existing across different modules.
 
 For example, when `component` in `Projects` module "import" a `component` in `Todos` module,
@@ -182,6 +175,6 @@ Code-splitting your app can help you “lazy-load” just the things that are cu
 Search based on title, author with **Auto Complete** feature. This [elasticsearch](https://github.com/elastic/elasticsearch) library maybe helpful.
 
 * #### Pagination or Infinity Scroll
-If we have tons of books to load, the performance of the UI may become bad. We can chose to use **pagination** or **infinity scroll** to load data partially. For the book cover images, we can bring in the **lazy loading** and only load the image within the viewport to get a better UI performance.
+If we have tons of books to load, the performance of the UI may become bad. We can choose to use **pagination** or **infinity scroll** to load data partially. For the book cover images, we can bring in the **lazy loading** and only load the image within the viewport to get a better UI performance.
 
 * #### Login
