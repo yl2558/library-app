@@ -6,3 +6,4 @@ export const ADD_BOOK = `${prefix}/add_book`;
 export const DELETE_BOOK = `${prefix}/delete_book`;
 export const UPDATE_BOOK = `${prefix}/update_book`;
 export const UPDATE_BOOK_AVAILABILITY = `${prefix}/update_book_availability`;
+export const SET_SHOW_MODE = `${prefix}/set_show_mode`;

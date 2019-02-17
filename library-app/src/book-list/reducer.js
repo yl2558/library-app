@@ -5,12 +5,14 @@ import {
   ADD_BOOK,
   DELETE_BOOK,
   UPDATE_BOOK,
-  UPDATE_BOOK_AVAILABILITY
+  UPDATE_BOOK_AVAILABILITY,
+  SET_SHOW_MODE
 } from "./constants/ActionTypes";
 
 const INITIAL_STATE = {
   bookList: [],
-  book: {}
+  book: {},
+  show: "store"
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -53,6 +55,8 @@ export default (state = INITIAL_STATE, action) => {
           ...state.bookList.slice(idx + 1)
         ]
       };
+    case SET_SHOW_MODE:
+      return { ...state, show: action.payload };
     default:
       return state;
   }

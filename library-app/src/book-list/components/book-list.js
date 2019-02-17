@@ -15,7 +15,8 @@ import {
   addBook,
   deleteBook,
   updateBook,
-  updateBookAvailability
+  updateBookAvailability,
+  setShowMode
 } from "../actions";
 import { BookForm } from "./book-form";
 import "./book-list.scss";
@@ -28,8 +29,7 @@ class BookList extends Component {
       newBookVisible: false,
       updateBookVisible: false,
       filter: "all",
-      book: {},
-      show: "store"
+      book: {}
     };
   }
 
@@ -282,17 +282,17 @@ class BookList extends Component {
   };
 
   setStoreMode = () => {
-    this.setState({ show: "store" });
+    this.props.setShowMode("store");
   };
 
   setTableMode = () => {
-    this.setState({ show: "table" });
+    this.props.setShowMode("table");
   };
 
   render() {
     const Option = Select.Option;
-    const { bookList } = this.props;
-    const { filter, show } = this.state;
+    const { bookList, show } = this.props;
+    const { filter } = this.state;
     if (_.isEmpty(bookList)) {
       return <div>Loading...</div>;
     }
@@ -387,7 +387,8 @@ class BookList extends Component {
 
 function mapStateToProps(state) {
   return {
-    bookList: state.bookList.bookList
+    bookList: state.bookList.bookList,
+    show: state.bookList.show
   };
 }
 
@@ -399,6 +400,7 @@ export default connect(
     addBook,
     deleteBook,
     updateBook,
-    updateBookAvailability
+    updateBookAvailability,
+    setShowMode
   }
 )(BookList);

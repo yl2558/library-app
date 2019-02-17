@@ -5,7 +5,8 @@ import {
   ADD_BOOK,
   DELETE_BOOK,
   UPDATE_BOOK,
-  UPDATE_BOOK_AVAILABILITY
+  UPDATE_BOOK_AVAILABILITY,
+  SET_SHOW_MODE
 } from "./constants/ActionTypes";
 
 export function getBookList() {
@@ -108,5 +109,12 @@ export function updateBookAvailability(id, availability) {
       .catch(err => {
         console.log(err);
       });
+  };
+}
+
+export function setShowMode(mode) {
+  return {
+    type: SET_SHOW_MODE,
+    payload: mode
   };
 }
