@@ -71,3 +71,64 @@ yarn build
 
 * #### UI Framework
   * [Ant Design](https://ant.design/) - An enterprise-class UI design language and React-based implementation
+  
+
+### Code Maintainability & File Structure
+* #### Organize by Feature
+In a large project, organizing by feature affords you the ability to focus on the feature at hand, instead of having to worry about navigating the entire project. This means that if I need to change something related to todos, I can work solely within that module and not even think about the rest of the application. In a sense, it creates an application within the main application.
+
+```
+src/
+  index.js
+  rootReducer.js
+
+  common/
+    index.js
+    components/
+    constants/
+    styles/
+
+  projects/
+    components/
+    constants/
+      actionTypes.js
+      foo.json
+    index.js
+    api.js
+    actions.js
+    reducer.js
+
+  todos/
+    components/
+    constants/
+      actionTypes.js
+      foo.json
+    index.js
+    api.js
+    actions.js
+    reducer.js
+```
+
+* #### Create Strict Module Boundaries
+Divide the application by modules, and for each module, make sure to export resources via `index.js` if needed in which we create a window to expose the module to the outside world.
+It increases the maintainability of our application especially when there are dependencies existing across different modules.
+
+For example, when `component` in `Projects` module "import" a `component` in `Todos` module,
+
+***Bad***
+
+``` javascript
+import actions from '../todos/actions';
+import TodoItem from '../todos/components/TodoItem';
+```
+
+***Good***
+
+```javascript
+import todos from '../todos';
+const { actions, TodoItem } = todos;
+```
+
+Even if `Todos` module is refactored in the future, there will be no impact on the modules `Projects` which is using `Todos`.
+
+[References](https://jaysoo.ca/2016/02/28/organizing-redux-application/)
