@@ -6,6 +6,8 @@ import Card from "antd/lib/card";
 import Modal from "antd/lib/modal";
 import Popconfirm from "antd/lib/popconfirm";
 import Select from "antd/lib/select";
+import Table from "antd/lib/table";
+import Icon from "antd/lib/icon";
 import { NoData, ErrorBoundary } from "../../common";
 import {
   getBookList,
@@ -26,7 +28,8 @@ class BookList extends Component {
       newBookVisible: false,
       updateBookVisible: false,
       filter: "all",
-      book: {}
+      book: {},
+      show: "store"
     };
   }
 
@@ -176,10 +179,120 @@ class BookList extends Component {
     </div>
   );
 
+  constructColumns = () => {
+    let columns = [
+      {
+        title: "Book Title",
+        dataIndex: "title",
+        key: "title",
+        width: "40%",
+        render: (text, record) => (
+          <div style={{ display: "flex" }}>
+            <div
+              style={{
+                width: 50,
+                height: 50,
+                minWidth: 50,
+                marginRight: 14,
+                backgroundColor: "#fff",
+                cursor: "pointer"
+              }}
+              className="center"
+              onClick={() => this.handleOnClick(record.id)}
+            >
+              <img
+                src={record.imageLink}
+                style={{
+                  maxWidth: 50,
+                  maxHeight: 50
+                }}
+                alt="book"
+              />
+            </div>
+            <div className="center">
+              <span>{record.title}</span>
+            </div>
+          </div>
+        )
+      },
+      {
+        title: "Author",
+        dataIndex: "author",
+        key: "author",
+        width: 100
+      },
+      {
+        title: "Actions",
+        key: "actions",
+        width: 100,
+        render: (text, record, index) => (
+          <div>
+            <Popconfirm
+              title="Are you sure you want to delete this book?"
+              onConfirm={() => this.confirmDeleteBook(record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button className="mr-10" type="danger">
+                Delete
+              </Button>
+            </Popconfirm>
+            <Button
+              className="mr-10"
+              onClick={() => this.showUpdateModal(record)}
+            >
+              Update
+            </Button>
+            <Popconfirm
+              title={`Are you sure you want to ${
+                record.availability ? "borrow" : "return"
+              } this book?`}
+              onConfirm={() =>
+                this.confirmUpdateAvailability(record.id, record.availability)
+              }
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button
+                className="mr-10"
+                type={record.availability ? "primary" : "default"}
+              >
+                {record.availability ? "Borrow" : "Return"}
+              </Button>
+            </Popconfirm>
+          </div>
+        )
+      }
+    ];
+    return columns;
+  };
+
+  constructDataSource = bookList => {
+    const data = [];
+    for (let book of bookList) {
+      data.push({
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        imageLink: book.imageLink,
+        availability: book.availability
+      });
+    }
+    return data;
+  };
+
+  setStoreMode = () => {
+    this.setState({ show: "store" });
+  };
+
+  setTableMode = () => {
+    this.setState({ show: "table" });
+  };
+
   render() {
     const Option = Select.Option;
     const { bookList } = this.props;
-    const { filter } = this.state;
+    const { filter, show } = this.state;
     if (_.isEmpty(bookList)) {
       return <div>Loading...</div>;
     }
@@ -191,55 +304,82 @@ class BookList extends Component {
         : _.filter(bookList, ["availability", true]);
     return (
       <ErrorBoundary>
-        <div style={{ padding: "0 10px" }}>
-          <Button className="mb-10 mr-10" onClick={this.showModal}>
-            Add new book
-          </Button>
-          <Select
-            defaultValue={this.state.filter}
-            style={{ width: "20%" }}
-            onChange={e => this.handleFilterOnChange(e)}
-          >
-            <Option value="all">Show All Books</Option>
-            <Option value="loaned">Show Loaned Books</Option>
-            <Option value="available">Show Available Books</Option>
-          </Select>
-          <Modal
-            title="Add New Book"
-            visible={this.state.newBookVisible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-            footer={null}
-          >
-            <BookForm
-              onSubmit={value => this.handleAddBook(value)}
-              bookInfo={this.state.book}
-              label="Add"
-            />
-          </Modal>
-          <Modal
-            title="Update Book Info"
-            visible={this.state.updateBookVisible}
-            onOk={this.handleUpdateOk}
-            onCancel={this.handleUpdateCancel}
-            footer={null}
-          >
-            <BookForm
-              onSubmit={value => this.handleUpdateBook(value)}
-              bookInfo={this.state.book}
-              label="Update"
-            />
-          </Modal>
-        </div>
-        {_.isEmpty(filteredBookList) ? (
-          <NoData />
-        ) : (
-          <div className="book-list">
-            {filteredBookList.map((e, idx) =>
-              this.createBookCardComponent(e, idx)
-            )}
+        <div className="book-list">
+          <div style={{ padding: "0 10px" }}>
+            <Button className="mb-10 mr-10" onClick={this.showModal}>
+              Add new book
+            </Button>
+            <Select
+              defaultValue={this.state.filter}
+              style={{ width: "20%" }}
+              onChange={e => this.handleFilterOnChange(e)}
+            >
+              <Option value="all">Show All Books</Option>
+              <Option value="loaned">Show Loaned Books</Option>
+              <Option value="available">Show Available Books</Option>
+            </Select>
+            <Button
+              style={{ float: "right" }}
+              className="mb-10"
+              onClick={this.setStoreMode}
+              type={show === "store" ? "primary" : "default"}
+            >
+              <Icon type="appstore" />
+            </Button>
+            <Button
+              style={{ float: "right" }}
+              className="mb-10 mr-10"
+              onClick={this.setTableMode}
+              type={show === "table" ? "primary" : "default"}
+            >
+              <Icon type="bars" />
+            </Button>
+            <Modal
+              title="Add New Book"
+              visible={this.state.newBookVisible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+              footer={null}
+            >
+              <BookForm
+                onSubmit={value => this.handleAddBook(value)}
+                bookInfo={this.state.book}
+                label="Add"
+              />
+            </Modal>
+            <Modal
+              title="Update Book Info"
+              visible={this.state.updateBookVisible}
+              onOk={this.handleUpdateOk}
+              onCancel={this.handleUpdateCancel}
+              footer={null}
+            >
+              <BookForm
+                onSubmit={value => this.handleUpdateBook(value)}
+                bookInfo={this.state.book}
+                label="Update"
+              />
+            </Modal>
           </div>
-        )}
+          {_.isEmpty(filteredBookList) ? (
+            <NoData />
+          ) : show === "store" ? (
+            <div className="book-store">
+              {filteredBookList.map((e, idx) =>
+                this.createBookCardComponent(e, idx)
+              )}
+            </div>
+          ) : (
+            <div style={{ padding: "0 10px" }}>
+              <Table
+                className="book-table"
+                columns={this.constructColumns()}
+                dataSource={this.constructDataSource(filteredBookList)}
+                pagination={false}
+              />
+            </div>
+          )}
+        </div>
       </ErrorBoundary>
     );
   }

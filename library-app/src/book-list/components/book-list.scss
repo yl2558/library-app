@@ -1,26 +1,32 @@
 .book-list {
-  border-radius: 4px;
-  min-height: 188px;
-  display: grid;
-  grid-template-columns: 50% 50%;
+  .book-store {
+    border-radius: 4px;
+    min-height: 188px;
+    display: grid;
+    grid-template-columns: 50% 50%;
 
-  .card-wrapper {
-    width: 100%;
-    padding: 0 10px;
-    margin-bottom: 10px;
-
-    .card-content {
-      display: flex;
+    .card-wrapper {
+      width: 100%;
+      padding: 0 10px;
       margin-bottom: 10px;
-      .left {
-        flex: 30% 1 1;
-        cursor: pointer;
-      }
 
-      .right {
-        flex: 70% 1 1;
-        padding-left: 20px;
+      .card-content {
+        display: flex;
+        margin-bottom: 10px;
+        .left {
+          flex: 30% 1 1;
+          cursor: pointer;
+        }
+
+        .right {
+          flex: 70% 1 1;
+          padding-left: 20px;
+        }
       }
     }
+  }
+
+  .book-table {
+    background: #fefefe;
   }
 }
