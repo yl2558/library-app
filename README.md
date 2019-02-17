@@ -132,3 +132,41 @@ const { actions, TodoItem } = todos;
 Even if `Todos` module is refactored in the future, there will be no impact on the modules `Projects` which is using `Todos`.
 
 [References](https://jaysoo.ca/2016/02/28/organizing-redux-application/)
+
+* #### Error Boundaries
+
+Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed.
+
+```javascript
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+
+Then you can use it as a regular component:
+
+```javascript
+<ErrorBoundary>
+  <MyWidget />
+</ErrorBoundary>
+```
+
+[References](https://reactjs.org/docs/error-boundaries.html)
