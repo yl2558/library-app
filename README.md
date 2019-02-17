@@ -170,3 +170,18 @@ Then you can use it as a regular component:
 ```
 
 [References](https://reactjs.org/docs/error-boundaries.html)
+
+* #### Code Splitting
+Code-splitting your app can help you “lazy-load” just the things that are currently needed by the user, which can dramatically improve the performance of your app.
+
+[References](https://reactjs.org/docs/code-splitting.html)
+
+
+### Possible New Features
+* #### Search Bar
+Search based on title, author with **Auto Complete** feature. This [elasticsearch](https://github.com/elastic/elasticsearch) library maybe helpful.
+
+* #### Pagination or Infinity Scroll
+If we have tons of books to load, the performance of the UI may become bad. We can chose to use **pagination** or **infinity scroll** to load data partially. For the book cover images, we can bring in the **lazy loading** and only load the image within the viewport to get a better UI performance.
+
+* #### Login
