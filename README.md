@@ -68,10 +68,11 @@ yarn start
 
 ### Code Maintainability & File Structure
 * #### Organize by Feature
-In a large project, organizing by feature affords you the ability to focus on the feature at hand, instead of having to worry about navigating the entire project. This means that if I need to change something related to todos, I can work solely within that module and not even think about the rest of the application. In a sense, it creates an application within the main application.
+In a large project, organizing by feature affords you the ability to focus on the feature at hand, instead of having to worry about navigating the entire project. This means that if I need to change something related to book-list, I can work solely within that module and not even think about the rest of the application. In a sense, it creates an application within the main application.
 
 ```
 src/
+  App.js
   index.js
   rootReducer.js
 
@@ -81,23 +82,11 @@ src/
     constants/
     styles/
 
-  projects/
+  book-list/
     components/
     constants/
       actionTypes.js
-      foo.json
     index.js
-    api.js
-    actions.js
-    reducer.js
-
-  todos/
-    components/
-    constants/
-      actionTypes.js
-      foo.json
-    index.js
-    api.js
     actions.js
     reducer.js
 ```
@@ -175,6 +164,6 @@ Code-splitting your app can help you “lazy-load” just the things that are cu
 Search based on title, author with **Auto Complete** feature. This [elasticsearch](https://github.com/elastic/elasticsearch) library maybe helpful.
 
 * #### Pagination or Infinity Scroll
-If we have tons of books to load, the performance of the UI may become bad. We can choose to use **pagination** or **infinity scroll** to load data partially. For the book cover images, we can bring in the **lazy loading** and only load the image within the viewport to get a better UI performance.
+If we have tons of books to load, the performance of the UI may become bad. We can choose to use **pagination** or **infinity scroll** to load data partially and get a better UI performance.
 
 * #### Login
