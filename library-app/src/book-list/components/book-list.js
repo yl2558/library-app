@@ -149,6 +149,7 @@ class BookList extends Component {
             onConfirm={() => this.confirmDeleteBook(e.id)}
             okText="Yes"
             cancelText="No"
+            icon={<Icon type="exclamation-circle" style={{ color: "red" }} />}
           >
             <Button className="mr-10" type="danger">
               Delete
@@ -185,7 +186,7 @@ class BookList extends Component {
         title: "Book Title",
         dataIndex: "title",
         key: "title",
-        width: "40%",
+        width: "25%",
         render: (text, record) => (
           <div style={{ display: "flex" }}>
             <div
@@ -219,12 +220,31 @@ class BookList extends Component {
         title: "Author",
         dataIndex: "author",
         key: "author",
-        width: 100
+        width: "20%"
+      },
+      {
+        title: "Description",
+        dataIndex: "description",
+        key: "description",
+        width: "30%",
+        onCell: () => {
+          return {
+            style: {
+              whiteSpace: "nowrap",
+              maxWidth: 150
+            }
+          };
+        },
+        render: (text, record) => (
+          <div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+            {record.description}
+          </div>
+        )
       },
       {
         title: "Actions",
         key: "actions",
-        width: 100,
+        width: "25%",
         render: (text, record, index) => (
           <div>
             <Popconfirm
@@ -274,6 +294,7 @@ class BookList extends Component {
         id: book.id,
         title: book.title,
         author: book.author,
+        description: book.description,
         imageLink: book.imageLink,
         availability: book.availability
       });
