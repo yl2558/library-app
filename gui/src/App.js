@@ -1,14 +1,14 @@
 import React from "react";
-import axios from "axios";
 import { Route, Switch } from "react-router";
+import axios from "axios";
 import Layout from "antd/lib/layout";
+import Menu from "antd/lib/menu";
 import Input from "antd/lib/input";
 import Icon from "antd/lib/icon";
-import Menu from "antd/lib/menu";
 import message from "antd/lib/message";
-import { BookList, Book } from "./book-list";
+
 import { ROOT_URL, ErrorBoundary } from "./common";
-import history from "./history";
+import { BookList, Book } from "./book-list";
 import "./common/styles/global.scss";
 
 const { Header, Content } = Layout;

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import _ from "lodash";
 import { connect } from "react-redux";
-import Card from "antd/lib/card";
+import _ from "lodash";
 import Button from "antd/lib/button";
+import Card from "antd/lib/card";
+
 import { ErrorBoundary } from "../../common";
 import "./book-list.scss";
 
