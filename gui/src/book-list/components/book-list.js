@@ -22,14 +22,37 @@ import {
 import { BookForm } from "./book-form";
 import "./book-list.scss";
 
+/**
+ * List all books, Add a new book, Delete/Update existing book
+ * Borrow/Return an existing book
+ * @extends Component
+ */
 class BookList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      /**
+       * newBookVisible controls the visibility of the create a new book Modal
+       * @type {Boolean}
+       */
       newBookVisible: false,
+      /**
+       * updateBookVisible controls the visibility of the update book Modal
+       * @type {Boolean}
+       */
       updateBookVisible: false,
+      /**
+       * filter has three status: all/loaned/available, which controls
+       * show all the books, show the books you borrowed, show the books still available
+       * @type {String}
+       */
       filter: "all",
+      /**
+       * book saves the bookInfo you choose to update and will be passed into the
+       * update form as initial value
+       * @type {Object}
+       */
       book: {}
     };
   }
@@ -38,13 +61,22 @@ class BookList extends Component {
     this.props.getBookList();
   }
 
-  // List single book
+  /**
+   * Click on a single book to list a single book Info
+   * nav to book info page
+   * @param  {number} id required, id of the book you select
+   * @return {[type]}       [description]
+   */
   handleOnClick = id => {
     this.props.getBook(id);
     this.props.history.push("/book");
   };
 
-  // Add New Book
+  /**
+   * Add a new book
+   * @param  {Object} value book value object from BookForm component
+   * @return {[type]}       [description]
+   */
   handleAddBook = value => {
     console.log("add a new book", value);
     const book = {
@@ -60,25 +92,31 @@ class BookList extends Component {
     });
   };
 
+  /**
+   * Show create a new book Modal
+   * @return {[type]} [description]
+   */
   showModal = () => {
     this.setState({
       newBookVisible: true
     });
   };
 
-  handleOk = () => {
-    this.setState({
-      newBookVisible: false
-    });
-  };
-
+  /**
+   * Close create a new book Modal
+   * @return {[type]} [description]
+   */
   handleCancel = () => {
     this.setState({
       newBookVisible: false
     });
   };
 
-  // Update Book Info
+  /**
+   * Update an existing book
+   * @param  {Object} value book value object from BookForm component
+   * @return {[type]}       [description]
+   */
   handleUpdateBook = value => {
     console.log("update book", value);
     const book = {
@@ -94,6 +132,11 @@ class BookList extends Component {
     });
   };
 
+  /**
+   * Show update an existing book Modal, set the select BookInfo passing to the
+   * BookForm component as default value
+   * @return {[type]} [description]
+   */
   showUpdateModal = e => {
     this.setState({
       updateBookVisible: true,
@@ -101,13 +144,10 @@ class BookList extends Component {
     });
   };
 
-  handleUpdateOk = () => {
-    this.setState({
-      updateBookVisible: false,
-      book: {}
-    });
-  };
-
+  /**
+   * Close update an existing book Modal & clear the select BookInfo
+   * @return {[type]} [description]
+   */
   handleUpdateCancel = () => {
     this.setState({
       updateBookVisible: false,
@@ -115,22 +155,42 @@ class BookList extends Component {
     });
   };
 
-  // Delete Book
+  /**
+   * Delete an existing book
+   * @param  {Number} id required, id of the book you select
+   * @return {[type]}    [description]
+   */
   confirmDeleteBook = id => {
     this.props.deleteBook(id);
   };
 
-  // Borrow/Return Book
+  /**
+   * Borrow/Return a book
+   * @param  {Number} id            required, id of the book you select
+   * @param  {Boolean} availability required, current availability of the book you select
+   * @return {[type]}               [description]
+   */
   confirmUpdateAvailability = (id, availability) => {
     this.props.updateBookAvailability(id, availability);
   };
 
+  /**
+   * Change the filter selection, choose to show all/loaned/available books
+   * @param  {[type]} filter [description]
+   * @return {[type]}        [description]
+   */
   handleFilterOnChange = filter => {
     this.setState({
       filter
     });
   };
 
+  /**
+   * Create book card component to show each book
+   * @param  {Object} e   required, book object
+   * @param  {Number} idx required, book index
+   * @return {Object}     return a JSX element
+   */
   createBookCardComponent = (e, idx) => (
     <div key={idx} className="card-wrapper">
       <Card>
@@ -181,6 +241,10 @@ class BookList extends Component {
     </div>
   );
 
+  /**
+   * Create columns for antd table
+   * @return {Array} an array of object
+   */
   constructColumns = () => {
     let columns = [
       {
@@ -278,6 +342,10 @@ class BookList extends Component {
     return columns;
   };
 
+  /**
+   * Create data source array for antd table
+   * @return {Array} an array of object
+   */
   constructDataSource = bookList => {
     const data = [];
     for (let book of bookList) {
@@ -293,6 +361,9 @@ class BookList extends Component {
     return data;
   };
 
+  /**
+   * set the show mode in redux store to switch between store/table mode
+   */
   setStoreMode = () => {
     this.props.setShowMode("store");
   };
@@ -347,7 +418,6 @@ class BookList extends Component {
             <Modal
               title="Add New Book"
               visible={this.state.newBookVisible}
-              onOk={this.handleOk}
               onCancel={this.handleCancel}
               footer={null}
             >
@@ -360,7 +430,6 @@ class BookList extends Component {
             <Modal
               title="Update Book Info"
               visible={this.state.updateBookVisible}
-              onOk={this.handleUpdateOk}
               onCancel={this.handleUpdateCancel}
               footer={null}
             >

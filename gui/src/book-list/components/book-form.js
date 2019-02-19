@@ -4,6 +4,10 @@ import Button from "antd/lib/button";
 import Form from "antd/lib/form";
 import Input from "antd/lib/input";
 
+/**
+ * Book Form creates a form component which can be used when create/update a book
+ * @extends Component
+ */
 class BookForm extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +15,12 @@ class BookForm extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
+  /**
+   * Submit the current form page info and pass the form value to its parent
+   * Then reset the form to empty
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
   handleOnSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {

@@ -7,6 +7,10 @@ import Card from "antd/lib/card";
 import { ErrorBoundary } from "../../common";
 import "./book.scss";
 
+/**
+ * List a single book
+ * @extends Component
+ */
 class Book extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +18,10 @@ class Book extends Component {
     this.state = {};
   }
 
+  /**
+   * Click to Nav back to the main page
+   * @return {[type]} [description]
+   */
   handleOnClick = () => {
     this.props.history.push("/");
   };
