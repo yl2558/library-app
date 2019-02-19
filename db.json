@@ -2,61 +2,70 @@
   "books": [
     {
       "id": 1,
-      "author": "Gabriel García Márquez",
-      "country": "Colombia",
-      "imageLink": "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
-      "language": "Spanish",
-      "link": "https://en.wikipedia.org/wiki/Love_in_the_Time_of_Cholera\n",
-      "pages": 368,
-      "title": "Love in the Time of Cholera",
-      "year": 1985,
+      "author": "Jane Austen",
+      "country": "United Kingdom",
+      "imageLink":
+        "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Pride_and_Prejudice\n",
+      "pages": 226,
+      "title": "Pride and Prejudice",
+      "year": 1813,
       "avalability": true,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at.",
+      "description":
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at.",
       "availability": false
     },
     {
       "id": 2,
       "author": "Unknown",
       "country": "Sumer and Akkadian Empire",
-      "imageLink": "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
+      "imageLink":
+        "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
       "language": "Akkadian",
       "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
       "pages": 160,
       "title": "The Epic Of Gilgamesh",
       "year": -1700,
       "availability": true,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
+      "description":
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
     },
     {
       "id": 3,
       "author": "Dante Alighieri",
       "country": "Italy",
-      "imageLink": "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
+      "imageLink":
+        "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
       "language": "Italian",
       "link": "https://en.wikipedia.org/wiki/Divine_Comedy\n",
       "pages": 928,
       "title": "The Divine Comedy",
       "year": 1315,
       "availability": true,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
+      "description":
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at."
     },
     {
       "id": 4,
       "author": "Gabriel García Márquez",
       "country": "Colombia",
-      "imageLink": "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
+      "imageLink":
+        "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
       "language": "Spanish",
       "link": "https://en.wikipedia.org/wiki/Love_in_the_Time_of_Cholera\n",
       "pages": 368,
       "title": "Love in the Time of Cholera",
       "year": 1985,
       "avalability": true,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at.",
+      "description":
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sapiente explicabo unde architecto ad magnam dolores similique accusantium, voluptatibus fuga magni deserunt mollitia, soluta corrupti pariatur, quam laborum eligendi at.",
       "availability": false
     },
     {
       "author": "resat",
-      "imageLink": "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
+      "imageLink":
+        "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
       "title": "test",
       "description": "fajkjklqbfwbfkjwafjkwBFBFKA",
       "availability": true,
