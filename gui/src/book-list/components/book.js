@@ -5,7 +5,7 @@ import Button from "antd/lib/button";
 import Card from "antd/lib/card";
 
 import { ErrorBoundary } from "../../common";
-import "./book-list.scss";
+import "./book.scss";
 
 class Book extends Component {
   constructor(props) {
@@ -25,15 +25,15 @@ class Book extends Component {
     }
     return (
       <ErrorBoundary>
-        <div style={{ display: "flex" }} className="center mb-10">
-          <div style={{ width: "50%" }}>
+        <div className="center mb-10">
+          <div className="w-50">
             <Button onClick={this.handleOnClick}>Back</Button>
           </div>
         </div>
-        <div style={{ display: "flex" }} className="center">
-          <Card style={{ width: "50%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ flex: "30% 1 1" }}>
+        <div className="center">
+          <Card className="w-50">
+            <div className="book">
+              <div className="left">
                 <img
                   src={book.imageLink}
                   alt={book.id}
@@ -41,7 +41,7 @@ class Book extends Component {
                   width="100%"
                 />
               </div>
-              <div className="mb-10 ml-10" style={{ flex: "70% 1 1" }}>
+              <div className="mb-10 right">
                 <h3>{book.title}</h3>
                 <div className="mb-10">by {book.author}</div>
                 <div>{book.description}</div>

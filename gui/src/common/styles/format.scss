@@ -25,6 +25,37 @@ $directions: "t", "b", "l", "r";
   }
 }
 
+@for $i from 1 through 4 {
+  @for $j from 1 through 35 {
+    @if nth($directions, $i) == "t" {
+      .p#{nth($directions, $i)}-#{$j} {
+        margin-top: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "b" {
+      .p#{nth($directions, $i)}-#{$j} {
+        margin-bottom: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "l" {
+      .p#{nth($directions, $i)}-#{$j} {
+        margin-left: #{$j}px !important;
+      }
+    }
+    @if nth($directions, $i) == "r" {
+      .p#{nth($directions, $i)}-#{$j} {
+        margin-right: #{$j}px !important;
+      }
+    }
+  }
+}
+
+@for $i from 1 through 100 {
+  .w-#{$i} {
+    width: #{$i}% !important;
+  }
+}
+
 /* font weight */
 .bold {
   font-weight: bold;
@@ -41,4 +72,18 @@ $directions: "t", "b", "l", "r";
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* float */
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

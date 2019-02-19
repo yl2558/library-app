@@ -71,7 +71,7 @@ class BookForm extends Component {
           })(<Input.TextArea rows={5} placeholder="Enter Book Description" />)}
         </FormItem>
         <FormItem>
-          <Button type="primary" htmlType="submit" style={{ float: "right" }}>
+          <Button type="primary" htmlType="submit" className="pull-right">
             {label}
           </Button>
         </FormItem>

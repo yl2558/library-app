@@ -50,22 +50,15 @@ axios.interceptors.response.use(
 
 const App = () => (
   <Layout>
-    <Header style={{ background: "#fefefe", display: "flex" }}>
-      <div style={{ width: "30%" }}>
-        <Input
-          placeholder="Search Book"
-          prefix={<Icon type="search" style={{ color: "rgba(0,0,0,.25)" }} />}
-        />
+    <Header className="header">
+      <div className="w-30">
+        <Input placeholder="Search Book" prefix={<Icon type="search" />} />
       </div>
-      <div style={{ width: "40%" }} className="center">
+      <div className="center w-40">
         <span>Personal Library</span>
       </div>
-      <div style={{ width: "30%" }}>
-        <Menu
-          theme="light"
-          mode="horizontal"
-          style={{ lineHeight: "64px", float: "right" }}
-        >
+      <div className="w-30">
+        <Menu theme="light" mode="horizontal" className="pull-right menu">
           <SubMenu
             key="username"
             title={
@@ -86,7 +79,7 @@ const App = () => (
       </div>
     </Header>
     <ErrorBoundary>
-      <Content style={{ padding: 24 }}>
+      <Content className="content">
         {
           <Switch>
             <Route path="/book" component={Book} />

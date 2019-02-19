@@ -189,17 +189,9 @@ class BookList extends Component {
         key: "title",
         width: "25%",
         render: (text, record) => (
-          <div style={{ display: "flex" }}>
+          <div className="title">
             <div
-              style={{
-                width: 50,
-                height: 50,
-                minWidth: 50,
-                marginRight: 14,
-                backgroundColor: "#fff",
-                cursor: "pointer"
-              }}
-              className="center"
+              className="center mr-10 s-img"
               onClick={() => this.handleOnClick(record.id)}
             >
               <img
@@ -232,14 +224,12 @@ class BookList extends Component {
           return {
             style: {
               whiteSpace: "nowrap",
-              maxWidth: 150
+              maxWidth: 100
             }
           };
         },
         render: (text, record) => (
-          <div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
-            {record.description}
-          </div>
+          <div className="ellipsis">{record.description}</div>
         )
       },
       {
@@ -327,13 +317,13 @@ class BookList extends Component {
     return (
       <ErrorBoundary>
         <div className="book-list">
-          <div style={{ padding: "0 10px" }}>
+          <div className="pl-10 pr-10">
             <Button className="mb-10 mr-10" onClick={this.showModal}>
               Add new book
             </Button>
             <Select
               defaultValue={this.state.filter}
-              style={{ width: "20%" }}
+              className="w-20"
               onChange={e => this.handleFilterOnChange(e)}
             >
               <Option value="all">Show All Books</Option>
@@ -341,16 +331,14 @@ class BookList extends Component {
               <Option value="available">Show Available Books</Option>
             </Select>
             <Button
-              style={{ float: "right" }}
-              className="mb-10"
+              className="mb-10 pull-right"
               onClick={this.setStoreMode}
               type={show === "store" ? "primary" : "default"}
             >
               <Icon type="appstore" />
             </Button>
             <Button
-              style={{ float: "right" }}
-              className="mb-10 mr-10"
+              className="mb-10 mr-10 pull-right"
               onClick={this.setTableMode}
               type={show === "table" ? "primary" : "default"}
             >
@@ -392,7 +380,7 @@ class BookList extends Component {
               )}
             </div>
           ) : (
-            <div style={{ padding: "0 10px" }}>
+            <div className="pl-10 pr-10">
               <Table
                 className="book-table"
                 columns={this.constructColumns()}

@@ -38,6 +38,19 @@ body {
   background-color: #a6cae5;
 }
 
+.header {
+  background: #fefefe;
+  display: flex;
+}
+
+.content {
+  padding: 24px;
+}
+
+.menu {
+  line-height: 64px;
+}
+
 .no-data-wrapper {
   height: 100%;
   width: 100%;
