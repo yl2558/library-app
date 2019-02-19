@@ -81,7 +81,7 @@ class BookList extends Component {
     console.log("add a new book", value);
     const book = {
       author: value.author,
-      imageLink: "images/fairy-tales.jpg",
+      imageLink: "https://via.placeholder.com/100x150/a6cae5/fefefe?text=book",
       title: value.title,
       description: value.description,
       availability: true
