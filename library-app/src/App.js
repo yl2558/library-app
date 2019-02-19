@@ -20,25 +20,9 @@ const error = err => {
   if (err.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    if (err.response.status === 416) {
-      message.error(
-        "No Data on selected page with current filter selection, please click submit first"
-      );
-    }
-    const onClose =
-      err.response.status === 401
-        ? () => {
-            // Using browserHistory to navigate outside of components
-            axios.defaults.headers.common.Authorization = null;
-            window.localStorage.removeItem("token");
-            history.push("/");
-          }
-        : undefined;
     message.error(
       (err.response.data && err.response.data.message) ||
-        "Something went wrong with the server, if it is frozen, please refresh",
-      1.5,
-      onClose
+        "Something went wrong with the server, if it is frozen, please refresh"
     );
   } else if (err.request) {
     // The request was made but no response was received
