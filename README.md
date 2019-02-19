@@ -28,7 +28,7 @@ json-server --watch db.json --port 3004
 ### Package Installing
 
 ```sh
-cd into project directory (named `library-app`)
+cd into project directory (named `gui`)
 yarn install
 ```
 
